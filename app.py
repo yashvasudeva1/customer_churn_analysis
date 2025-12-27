@@ -18,7 +18,7 @@ st.divider()
 # Load data
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/WA_Fn-UseC_-Telco-Customer-Churn.csv")
+    df = pd.read_csv("WA_Fn-UseC_-Telco-Customer-Churn.csv")
     df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
     df.dropna(inplace=True)
     return df
@@ -397,3 +397,4 @@ st.divider()
 if __name__ == "__main__":
 
     about_the_coder()
+
