@@ -1,0 +1,14 @@
+streamlit
+<<<<<<< HEAD
+numpy
+pandas
+joblib
+scikit-learn==1.6.1
+=======
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+scipy
+>>>>>>> a8d8666 (Initial commit: Streamlit app, dataset, README, requirements)
