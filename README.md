@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Customer-Churn-Analysis-
 This project analyzes customer data to understand and predict churn — identifying customers who are likely to discontinue a service. By uncovering key behavioral and demographic factors behind churn, this analysis helps businesses make data-driven retention decisions
 =======
@@ -108,6 +107,4 @@ The dataset used is [WA_Fn-UseC_-Telco-Customer-Churn.csv], which contains custo
 **Yash Vasudeva**  
 [LinkedIn](https://www.linkedin.com/in/yash-vasudeva/) | [GitHub](https://github.com/yashvasudeva1) | [Portfolio](https://yashvasudeva.vercel.app/)
 
-## License
-This project is for educational and demonstration purposes.
->>>>>>> a8d8666 (Initial commit: Streamlit app, dataset, README, requirements)
+
