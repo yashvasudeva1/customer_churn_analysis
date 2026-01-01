@@ -405,8 +405,8 @@ if option == "Predictive Modeling":
         else:
             st.success(f"Customer is likely to stay (Probability: {1 - probability:.2f})")
 
-        y_pred = model.predict(X_test)
-        y_prob = model.predict_proba(X_test)[:, 1]
+        y_pred = best_model.predict(X_test)
+        y_prob = best_model.predict_proba(X_test)[:, 1]
 
         st.markdown("### Model Performance Metrics")
 
@@ -422,6 +422,7 @@ st.divider()
 if __name__ == "__main__":
 
     about_the_coder()
+
 
 
 
