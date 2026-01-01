@@ -348,8 +348,6 @@ if option == "Predictive Modeling":
     
     best_model = grid.best_estimator_
     
-    y_pred = best_model.predict(X_test_scaled)
-
     st.subheader("Enter Customer Details")
 
     col1, col2, col3 = st.columns(3)
@@ -399,8 +397,8 @@ if option == "Predictive Modeling":
     st.markdown("### Prediction")
 
     if st.button("Predict Churn"):
-        prediction = model.predict(input_scaled)[0]
-        probability = model.predict_proba(input_scaled)[0][1]
+        prediction = best_model.predict(input_scaled)[0]
+        probability = best_model.predict_proba(input_scaled)[0][1]
 
         if prediction == 1:
             st.error(f"Customer is likely to churn (Probability: {probability:.2f})")
@@ -424,5 +422,6 @@ st.divider()
 if __name__ == "__main__":
 
     about_the_coder()
+
 
 
