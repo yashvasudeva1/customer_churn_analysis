@@ -5,7 +5,7 @@ import seaborn as sns
 import numpy as np
 from scipy.stats import boxcox
 from sklearn.preprocessing import PowerTransformer
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
@@ -313,15 +313,42 @@ if option == "Predictive Modeling":
     X = df.drop('Churn', axis=1)
     y = df['Churn']
 
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X)
-
     X_train, X_test, y_train, y_test = train_test_split(
-        X_scaled, y, test_size=0.2, random_state=42, stratify=y
+        X, y, test_size=0.2, random_state=42, stratify=y
     )
-
-    model = LogisticRegression(max_iter=1000)
-    model.fit(X_train, y_train)
+    
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+    
+    param_grid = [
+        {
+            "penalty": ["l2"],
+            "C": [0.01, 0.1, 1, 10],
+            "solver": ["lbfgs"]
+        },
+        {
+            "penalty": ["l1"],
+            "C": [0.01, 0.1, 1, 10],
+            "solver": ["liblinear"]
+        }
+    ]
+    
+    log_reg = LogisticRegression(max_iter=1000)
+    
+    grid = GridSearchCV(
+        log_reg,
+        param_grid,
+        cv=5,
+        scoring="f1",
+        n_jobs=-1
+    )
+    
+    grid.fit(X_train_scaled, y_train)
+    
+    best_model = grid.best_estimator_
+    
+    y_pred = best_model.predict(X_test_scaled)
 
     st.subheader("Enter Customer Details")
 
@@ -397,4 +424,5 @@ st.divider()
 if __name__ == "__main__":
 
     about_the_coder()
+
 
